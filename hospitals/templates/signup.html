@@ -1,0 +1,164 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin Login </title>
+
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+    .note1 {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+      font-size: larger;
+    }
+    .form-content {
+      padding: .0005%;
+      border: 1px solid #ced4da;
+      margin-bottom: 1%;
+      text-align : center;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+      text-align : center;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 30%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+    .jumbotron {
+      
+      background-image: url('{% static "images/hosp1.jpg" %}');
+      background-size: cover;
+      background-repeat: no-repeat;
+      
+    }
+    .form-content{
+      filter: blur(80px);
+  -webkit-filter: blur(.25px);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="jumbotron" style="margin-bottom: 0px;margin-top: 0px;">
+
+{% if error == "no" %}
+     <script>
+	   alert('Signup Successfull');
+       window.location=('{% url 'signup' %}');
+     </script>
+{% endif %}
+
+{% if error == "yes" %}
+     <script>
+	    alert('Something went wrong, Try Again');
+     </script>
+{% endif %}
+
+{% if error == "user_name" %}
+<script>
+    alert('Username exists...Try agin...');
+ </script>
+{% endif %}
+    <form method="post">
+    {% csrf_token %}
+    <div class="container register-form mt-2" style="width : 600px;">
+      <div class="form">
+        <div class="note1">
+          <p style="font-size: x-large;">SIGNUP</p>
+        </div>{% for i in messages %}
+        <div class="alert alert-warning" role="alert">
+            <center>{{i}}</center>
+          </div>
+          {% endfor %}
+        <div class="form-content" style="background-image: url('{% static "images/hosp1.jpg" %}">
+          <div class="row mt-5">
+
+            <div class="col-md-12">
+              <div class="form-group">
+                  <input type="text" name="name" class="form-control py-3" placeholder="Name">
+              </div>
+            </div>
+            <!-- <div class="col-md-12">
+                <div class="form-group">
+                    <input type="text" name="gender" class="form-control py-3" placeholder="gender">
+                </div>
+              </div> -->
+              <div class="col-sm-12">
+							<div class="form-group"><font color="black">
+								<label><legend>Gender&nbsp&nbsp&nbsp&nbsp</legend></label>
+								<input type="radio" name="gender" value="Male" > Male&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								<input type="radio" name="gender" value="Female"> Female
+							</div></font>
+						</div>
+              <div class="col-md-12">
+                <div class="form-group">
+                    <input type="text" name="mobile" class="form-control py-3" placeholder="Mobile">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                    <input type="text" name="email" class="form-control py-3" placeholder="Email">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group ">
+                    <input type="textarea" name="address" class="form-control py-3" placeholder="address">
+                </div>
+              </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="password" name="password" class="form-control py-3" placeholder="Enter Password">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="password" name="cpass" class="form-control py-3" placeholder="Confirm password">
+                </div>
+              </div>
+
+          </div>
+          <button type="submit" class="btnSubmit">Signup</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+
+{% endblock%}

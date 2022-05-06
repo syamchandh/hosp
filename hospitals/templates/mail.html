@@ -1,0 +1,63 @@
+{% extends 'admin_nav.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>send mail</title>
+ 
+    
+    
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .slct{
+            position: relative;
+            font-family: arial;
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="container">
+        
+        <div class="col md-4"></div>
+        <div class="col md-4">
+    
+               
+            <p align="center" style="font-family: 'Times New Roman', Times, serif; font-size: 35px;">SEND CONFIRMATION MAIL</p><br></div>
+            <div class="col md-4"></div>
+
+        </div>
+        <!-- <form action="" method="post"> -->
+        <form action="{% url 'sendmail' %}" method="post">
+            {% csrf_token %}
+            
+
+            
+
+
+               
+                <!-- name<span class="asteriskField">*</span> </label> <div> <input type="text" name="stclass" maxlength="255" value="{{i.name}}" class="textinput textInput form-control" required id="id_stclass">{{i.name}} </nput></div> </div> <div id="div_id_stemail" class="form-group"> <label for="id_stemail" class=" requiredField">
+                Stemail<span class="asteriskField">*</span> </label> <div> <input type="text" name="stemail" maxlength="255" value="{{i.patient.emailv}}" class="textinput textInput form-control"> {{i.patient.emailv}}</input></div> </div> -->
+               
+               
+                        <center>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<div class="slct"><select name="stemail" class="form-control w-75" style="font-size: large;">
+                            {% for i in appointment %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<option value="{{i.patient.emailv}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{i.patient.emailv}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
+                            {% endfor %}
+                        </select><br><br></div>
+                    </div><br>
+                </div>
+                <center><button type="submit" onclick="return confirm('Are you sure to send appointment confirmation mail ?')" class="btn btn-danger w-50 mt-4" style="font-size: x-large; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">SEND MAIL</button></center><br>
+         
+        </form>
+    </div>
+</body>
+</html>
+{% endblock content %}
